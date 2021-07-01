@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_tradename_form" model="ir.ui.view">
+        <field name="name">product.template.tradename.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="website_sale.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='website_url']" position="before">
+                <field name="tradename" />
+            </xpath>
+        </field>
+    </record>
+
+    <template id="products_item_tradename_qualmex" inherit_id="website_sale.products_item" >
+        <xpath expr="//a[@itemprop='name']" position="attributes">
+            <attribute name="t-field">product.tradename</attribute>
+            <attribute name="t-att-content">product.tradename</attribute>
+        </xpath>
+    </template>
+    <template id="product_tradename_qualmex" inherit_id="website_sale.product" >
+        <xpath expr="//h1[@itemprop='name']" position="attributes">
+            <attribute name="t-field">product.tradename</attribute>
+        </xpath>
+        <xpath expr="//t[@t-set='additional_title']" position="attributes">
+            <attribute name="t-value">product.tradename</attribute>
+        </xpath>
+        <xpath expr="//span[@t-field='product.name']" position="attributes">
+            <attribute name="t-field">product.tradename</attribute>
+        </xpath>
+    </template>
+    <template id="cart_popover_tradename_qualmex" inherit_id="website_sale.cart_popover" >
+        <xpath expr="//span[@t-esc='line.name_short']" position="attributes">
+            <attribute name="t-esc">line.product_id.tradename</attribute>
+        </xpath>
+    </template>
+    <template id="cart_lines_tradename_qualmex" inherit_id="website_sale.cart_lines" >
+        <xpath expr="//strong[@t-field='line.name_short']" position="attributes">
+            <attribute name="t-field">line.product_id.tradename</attribute>
+        </xpath>
+    </template>
+    <template id="cart_summary_tradename_qualmex" inherit_id="website_sale.cart_summary" >
+        <xpath expr="//strong[@t-field='line.name_short']" position="attributes">
+            <attribute name="t-field">line.product_id.tradename</attribute>
+        </xpath>
+    </template>    
+</odoo>
